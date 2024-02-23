@@ -1,5 +1,5 @@
 {
-    "name": "stephane/contextual_more_links",
+    "name": "habeuk/contextual_more_links",
     "description": "Allows you to manage more contextual links",
     "type": "drupal-custom-module",
     "license": "MIT",
