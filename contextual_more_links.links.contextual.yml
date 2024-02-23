@@ -1,0 +1,30 @@
+contextual_more_links.edit_paragraph_display:
+  route_name: contextual_more_links.example
+  group: contextual_more_links
+  title: 'contextual_more_links example'
+  class: '\Drupal\contextual_more_links\Plugin\Menu\ContextualLink\EntityViewContextualLink'
+  
+contextual_more_links.paragraph_view_display:
+  route_name: entity.entity_view_display.paragraph.view_mode
+  group: paragraph_entity_display
+  title: 'Paragraph manage display'  
+  
+contextual_more_links.blocks_contents_view_display:
+  route_name: entity.entity_view_display.blocks_contents.view_mode
+  group: blocks_contents_entity_display
+  title: 'Blocks_contents manage display'
+  
+contextual_more_links.commerce_product_view_display:
+  route_name: entity.entity_view_display.commerce_product.view_mode
+  group: commerce_product_entity_display
+  title: 'Commerce_product manage display'
+  
+contextual_more_links.node_view_display:
+  route_name: entity.entity_view_display.node.view_mode
+  group: node_entity_display
+  title: 'Node manage display'
+  
+contextual_more_links.block_content_view_display:
+  route_name: entity.entity_view_display.block_content.view_mode
+  group: block_content_entity_display
+  title: 'Block_content manage display'

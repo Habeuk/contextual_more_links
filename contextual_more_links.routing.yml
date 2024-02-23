@@ -1,0 +1,16 @@
+contextual_more_links.example:
+  path: '/contextual-more-links/example'
+  defaults:
+    _title: 'Example'
+    _controller: '\Drupal\contextual_more_links\Controller\ContextualMoreLinksController'
+  requirements:
+    _permission: 'access content'
+
+    
+contextual_more_links.new_route:
+  path: '/contextual-more-links/new_route/{paragraph}/{bundle}'
+  defaults:
+    _title: 'Example'
+    _controller: '\Drupal\contextual_more_links\Controller\ContextualMoreLinksController::buildRoute'
+  requirements:
+    _permission: 'access content'

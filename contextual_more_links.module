@@ -1,0 +1,109 @@
+<?php
+
+/**
+ *
+ * @file
+ * Primary module hooks for contextual more links module.
+ */
+
+/**
+ * implement hook_contextual_links_view_alter
+ */
+function contextual_more_links_contextual_links_view_alter(&$element, $items) {
+  // $db = [
+  // 'element' => $element,
+  // 'items' => $items
+  // ];
+  // \Stephane888\Debug\debugLog::$max_depth = 10;
+  // \Stephane888\Debug\debugLog::kintDebugDrupal($db,
+  // 'hook_contextual_links_view_alter', true);
+  if (!empty($element['#contextual_links']['contextual_more_links'])) {
+    // dump($element);
+  }
+}
+
+/**
+ * Permet d'ajouter l'affichage des liens contextuels si c'est pas deja definie.
+ * Implement hook_preprocess_paragraph
+ *
+ * @param array $variables
+ */
+function contextual_more_links_preprocess_paragraph(&$variables) {
+  if (empty($variables['content']['#contextual_links']) && isset($variables['elements']['#contextual_links'])) {
+    $variables['content']['#contextual_links'] = $variables['elements']['#contextual_links'];
+    $variables['#contextual_links'] = $variables['elements']['#contextual_links'];
+  }
+}
+
+function contextual_more_links_block_content_view_alter(array &$build, \Drupal\Core\Entity\EntityInterface $entity, \Drupal\Core\Entity\Display\EntityViewDisplayInterface $display) {
+  // Remove the contextual links on all blocks that provide them.
+  if (isset($build['#contextual_links'])) {
+    $build['#contextual_links']['block_content_entity_display']['route_parameters'] = [];
+    $build['#contextual_links']['block_content_entity_display']['route_parameters']['view_mode_name'] = $build['#view_mode'];
+    $build['#contextual_links']['block_content_entity_display']['route_parameters']['entity_type_id'] = $entity->getEntityTypeId();
+    $build['#contextual_links']['block_content_entity_display']['route_parameters']['bundle'] = $entity->bundle();
+    $build['#contextual_links']['block_content_entity_display']['route_parameters']['bundle_key'] = $entity->getEntityType()->getBundleEntityType();
+    $build['#contextual_links']['block_content_entity_display']['route_parameters']['block_content_type'] = $entity->bundle();
+  }
+}
+
+function contextual_more_links_blocks_contents_view_alter(array &$build, \Drupal\Core\Entity\EntityInterface $entity, \Drupal\Core\Entity\Display\EntityViewDisplayInterface $display) {
+  // Remove the contextual links on all blocks that provide them.
+  if (isset($build['#contextual_links'])) {
+    $build['#contextual_links']['blocks_contents_entity_display']['route_parameters'] = [];
+    $build['#contextual_links']['blocks_contents_entity_display']['route_parameters']['view_mode_name'] = $build['#view_mode'];
+    $build['#contextual_links']['blocks_contents_entity_display']['route_parameters']['entity_type_id'] = $entity->getEntityTypeId();
+    $build['#contextual_links']['blocks_contents_entity_display']['route_parameters']['bundle'] = $entity->bundle();
+    $build['#contextual_links']['blocks_contents_entity_display']['route_parameters']['bundle_key'] = $entity->getEntityType()->getBundleEntityType();
+    $build['#contextual_links']['blocks_contents_entity_display']['route_parameters']['blocks_contents_type'] = $entity->bundle();
+  }
+}
+
+function contextual_more_links_paragraph_view_alter(array &$build, \Drupal\Core\Entity\EntityInterface $entity, \Drupal\Core\Entity\Display\EntityViewDisplayInterface $display) {
+  if (isset($build['#contextual_links'])) {
+    // Display contextual 'contextual_more_links'
+    // $build['#contextual_links']['contextual_more_links']['route_parameters']
+    // = [];
+    // $build['#contextual_links']['contextual_more_links']['route_parameters']['param1']
+    // = 'test';
+    //
+    // Display contextual 'paragraph_entity_view_display'
+    $build['#contextual_links']['paragraph_entity_display']['route_parameters'] = [];
+    $build['#contextual_links']['paragraph_entity_display']['route_parameters']['view_mode_name'] = $build['#view_mode'];
+    $build['#contextual_links']['paragraph_entity_display']['route_parameters']['entity_type_id'] = $entity->getEntityTypeId();
+    $build['#contextual_links']['paragraph_entity_display']['route_parameters']['bundle'] = $entity->bundle();
+    $build['#contextual_links']['paragraph_entity_display']['route_parameters']['bundle_key'] = $entity->getEntityType()->getBundleEntityType();
+    $build['#contextual_links']['paragraph_entity_display']['route_parameters']['paragraphs_type'] = $entity->bundle();
+    // $build['#contextual_links']['contextual_more_links']['route_parameters']['entity_type_id']
+    // = $build['#view_mode'];
+    // $build['#contextual_links']['contextual_more_links']['route_parameters']['entity_type_id']
+    // = $build['#view_mode'];
+  }
+}
+
+function contextual_more_links_node_view_alter(array &$build, \Drupal\Core\Entity\EntityInterface $entity, \Drupal\Core\Entity\Display\EntityViewDisplayInterface $display) {
+  // Remove the contextual links on all blocks that provide them.
+  if (isset($build['#contextual_links'])) {
+    $build['#contextual_links']['node_entity_display']['route_parameters'] = [];
+    $build['#contextual_links']['node_entity_display']['route_parameters']['view_mode_name'] = $build['#view_mode'];
+    $build['#contextual_links']['node_entity_display']['route_parameters']['entity_type_id'] = $entity->getEntityTypeId();
+    $build['#contextual_links']['node_entity_display']['route_parameters']['bundle'] = $entity->bundle();
+    $build['#contextual_links']['node_entity_display']['route_parameters']['bundle_key'] = $entity->getEntityType()->getBundleEntityType();
+    $build['#contextual_links']['node_entity_display']['route_parameters']['node_type'] = $entity->bundle();
+  }
+}
+
+function contextual_more_links_commerce_product_view_alter(array &$build, \Drupal\Core\Entity\EntityInterface $entity, \Drupal\Core\Entity\Display\EntityViewDisplayInterface $display) {
+  // Remove the contextual links on all blocks that provide them.
+  if (isset($build['#contextual_links'])) {
+    // dump($build);
+    $build['#contextual_links']['commerce_product_entity_display']['route_parameters'] = [];
+    $build['#contextual_links']['commerce_product_entity_display']['route_parameters']['view_mode_name'] = $build['#view_mode'];
+    $build['#contextual_links']['commerce_product_entity_display']['route_parameters']['entity_type_id'] = $entity->getEntityTypeId();
+    $build['#contextual_links']['commerce_product_entity_display']['route_parameters']['bundle'] = $entity->bundle();
+    $build['#contextual_links']['commerce_product_entity_display']['route_parameters']['bundle_key'] = $entity->getEntityType()->getBundleEntityType();
+    $build['#contextual_links']['commerce_product_entity_display']['route_parameters']['commerce_product_type'] = $entity->bundle();
+  }
+}
+
+

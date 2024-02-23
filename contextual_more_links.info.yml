@@ -1,0 +1,5 @@
+name: 'contextual more links'
+type: module
+description: 'Allows you to manage more contextual links'
+package: Custom
+core_version_requirement: ^9|^10
