@@ -35,6 +35,12 @@ function contextual_more_links_preprocess_paragraph(&$variables) {
   }
 }
 
+/**
+ *
+ * @param array $build
+ * @param \Drupal\Core\Entity\EntityInterface $entity
+ * @param \Drupal\Core\Entity\Display\EntityViewDisplayInterface $display
+ */
 function contextual_more_links_block_content_view_alter(array &$build, \Drupal\Core\Entity\EntityInterface $entity, \Drupal\Core\Entity\Display\EntityViewDisplayInterface $display) {
   // Remove the contextual links on all blocks that provide them.
   if (isset($build['#contextual_links'])) {
@@ -47,6 +53,12 @@ function contextual_more_links_block_content_view_alter(array &$build, \Drupal\C
   }
 }
 
+/**
+ *
+ * @param array $build
+ * @param \Drupal\Core\Entity\EntityInterface $entity
+ * @param \Drupal\Core\Entity\Display\EntityViewDisplayInterface $display
+ */
 function contextual_more_links_blocks_contents_view_alter(array &$build, \Drupal\Core\Entity\EntityInterface $entity, \Drupal\Core\Entity\Display\EntityViewDisplayInterface $display) {
   // Remove the contextual links on all blocks that provide them.
   if (isset($build['#contextual_links'])) {
