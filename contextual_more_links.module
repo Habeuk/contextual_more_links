@@ -33,6 +33,68 @@ function contextual_more_links_preprocess_paragraph(&$variables) {
     $variables['content']['#contextual_links'] = $variables['elements']['#contextual_links'];
     $variables['#contextual_links'] = $variables['elements']['#contextual_links'];
   }
+  // On ajoute la class edit-vuejs-hbk afin de selectionner efficacement
+  // l'element au hover.
+  if (!empty($variables['#contextual_links'])) {
+    $variables['attributes']['class'][] = 'edit-vuejs-hbk';
+  }
+}
+
+/**
+ * Permet d'ajouter l'affichage des liens contextuels si c'est pas deja definie.
+ * Implement hook_preprocess_paragraph
+ *
+ * @param array $variables
+ */
+function contextual_more_links_preprocess_node(&$variables) {
+  if (!empty($variables['elements']['#contextual_links'])) {
+    $variables['attributes']['class'][] = 'edit-vuejs-hbk';
+  }
+}
+
+/**
+ * Cela n'apparrait pas.
+ *
+ * @param array $variables
+ */
+function contextual_more_links_preprocess_block_content(&$variables) {
+  // dd($variables);
+}
+
+function contextual_more_links_preprocess_blocks_contents(&$variables) {
+  if (!empty($variables['elements']['#contextual_links'])) {
+    $variables['attributes']['class'][] = 'edit-vuejs-hbk';
+  }
+}
+
+function contextual_more_links_preprocess_commerce_product(&$variables) {
+  if (!empty($variables['elements']['#contextual_links'])) {
+    $variables['attributes']['class'][] = 'edit-vuejs-hbk';
+  }
+}
+
+function contextual_more_links_preprocess_taxonomy_term(&$variables) {
+  if (!empty($variables['elements']['#contextual_links'])) {
+    $variables['attributes']['class'][] = 'edit-vuejs-hbk';
+  }
+}
+
+/**
+ *
+ * @param array $build
+ * @param \Drupal\Core\Entity\EntityInterface $entity
+ * @param \Drupal\Core\Entity\Display\EntityViewDisplayInterface $display
+ */
+function contextual_more_links_taxonomy_term_view_alter(array &$build, \Drupal\Core\Entity\EntityInterface $entity, \Drupal\Core\Entity\Display\EntityViewDisplayInterface $display) {
+  // Remove the contextual links on all blocks that provide them.
+  if (isset($build['#contextual_links'])) {
+    $build['#contextual_links']['taxonomy_term_entity_display']['route_parameters'] = [];
+    $build['#contextual_links']['taxonomy_term_entity_display']['route_parameters']['view_mode_name'] = $build['#view_mode'];
+    $build['#contextual_links']['taxonomy_term_entity_display']['route_parameters']['entity_type_id'] = $entity->getEntityTypeId();
+    $build['#contextual_links']['taxonomy_term_entity_display']['route_parameters']['bundle'] = $entity->bundle();
+    $build['#contextual_links']['taxonomy_term_entity_display']['route_parameters']['bundle_key'] = $entity->getEntityType()->getBundleEntityType();
+    $build['#contextual_links']['taxonomy_term_entity_display']['route_parameters']['taxonomy_vocabulary'] = $entity->bundle();
+  }
 }
 
 /**

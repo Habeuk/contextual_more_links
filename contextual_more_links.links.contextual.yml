@@ -29,3 +29,8 @@ contextual_more_links.block_content_view_display:
   route_name: entity.entity_view_display.block_content.view_mode
   group: block_content_entity_display
   title: 'Block_content manage display'
+#Affichage du block_content par defaut   
+contextual_more_links.taxonomy_term_view_display:
+  route_name: entity.entity_view_display.taxonomy_term.view_mode
+  group: taxonomy_term_entity_display
+  title: 'taxonomy_term manage display'
