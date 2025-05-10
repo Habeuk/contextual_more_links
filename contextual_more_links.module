@@ -87,7 +87,7 @@ function contextual_more_links_preprocess_taxonomy_term(&$variables) {
  */
 function contextual_more_links_taxonomy_term_view_alter(array &$build, \Drupal\Core\Entity\EntityInterface $entity, \Drupal\Core\Entity\Display\EntityViewDisplayInterface $display) {
   // Remove the contextual links on all blocks that provide them.
-  if (isset($build['#contextual_links'])) {
+  if (isset($build['#contextual_links']) || \Drupal::currentUser()->hasPermission('access contextual links')) {
     $build['#contextual_links']['taxonomy_term_entity_display']['route_parameters'] = [];
     $build['#contextual_links']['taxonomy_term_entity_display']['route_parameters']['view_mode_name'] = $build['#view_mode'];
     $build['#contextual_links']['taxonomy_term_entity_display']['route_parameters']['entity_type_id'] = $entity->getEntityTypeId();
@@ -105,7 +105,7 @@ function contextual_more_links_taxonomy_term_view_alter(array &$build, \Drupal\C
  */
 function contextual_more_links_block_content_view_alter(array &$build, \Drupal\Core\Entity\EntityInterface $entity, \Drupal\Core\Entity\Display\EntityViewDisplayInterface $display) {
   // Remove the contextual links on all blocks that provide them.
-  if (isset($build['#contextual_links'])) {
+  if (isset($build['#contextual_links']) || \Drupal::currentUser()->hasPermission('access contextual links')) {
     $build['#contextual_links']['block_content_entity_display']['route_parameters'] = [];
     $build['#contextual_links']['block_content_entity_display']['route_parameters']['view_mode_name'] = $build['#view_mode'];
     $build['#contextual_links']['block_content_entity_display']['route_parameters']['entity_type_id'] = $entity->getEntityTypeId();
@@ -123,7 +123,7 @@ function contextual_more_links_block_content_view_alter(array &$build, \Drupal\C
  */
 function contextual_more_links_blocks_contents_view_alter(array &$build, \Drupal\Core\Entity\EntityInterface $entity, \Drupal\Core\Entity\Display\EntityViewDisplayInterface $display) {
   // Remove the contextual links on all blocks that provide them.
-  if (isset($build['#contextual_links'])) {
+  if (isset($build['#contextual_links']) || \Drupal::currentUser()->hasPermission('access contextual links')) {
     $build['#contextual_links']['blocks_contents_entity_display']['route_parameters'] = [];
     $build['#contextual_links']['blocks_contents_entity_display']['route_parameters']['view_mode_name'] = $build['#view_mode'];
     $build['#contextual_links']['blocks_contents_entity_display']['route_parameters']['entity_type_id'] = $entity->getEntityTypeId();
@@ -134,7 +134,7 @@ function contextual_more_links_blocks_contents_view_alter(array &$build, \Drupal
 }
 
 function contextual_more_links_paragraph_view_alter(array &$build, \Drupal\Core\Entity\EntityInterface $entity, \Drupal\Core\Entity\Display\EntityViewDisplayInterface $display) {
-  if (isset($build['#contextual_links'])) {
+  if (isset($build['#contextual_links']) || \Drupal::currentUser()->hasPermission('access contextual links')) {
     // Display contextual 'contextual_more_links'
     // $build['#contextual_links']['contextual_more_links']['route_parameters']
     // = [];
@@ -157,7 +157,7 @@ function contextual_more_links_paragraph_view_alter(array &$build, \Drupal\Core\
 
 function contextual_more_links_node_view_alter(array &$build, \Drupal\Core\Entity\EntityInterface $entity, \Drupal\Core\Entity\Display\EntityViewDisplayInterface $display) {
   // Remove the contextual links on all blocks that provide them.
-  if (isset($build['#contextual_links'])) {
+  if (isset($build['#contextual_links']) || \Drupal::currentUser()->hasPermission('access contextual links')) {
     $build['#contextual_links']['node_entity_display']['route_parameters'] = [];
     $build['#contextual_links']['node_entity_display']['route_parameters']['view_mode_name'] = $build['#view_mode'];
     $build['#contextual_links']['node_entity_display']['route_parameters']['entity_type_id'] = $entity->getEntityTypeId();
@@ -169,7 +169,7 @@ function contextual_more_links_node_view_alter(array &$build, \Drupal\Core\Entit
 
 function contextual_more_links_commerce_product_view_alter(array &$build, \Drupal\Core\Entity\EntityInterface $entity, \Drupal\Core\Entity\Display\EntityViewDisplayInterface $display) {
   // Remove the contextual links on all blocks that provide them.
-  if (isset($build['#contextual_links'])) {
+  if (isset($build['#contextual_links']) || \Drupal::currentUser()->hasPermission('access contextual links')) {
     // dump($build);
     $build['#contextual_links']['commerce_product_entity_display']['route_parameters'] = [];
     $build['#contextual_links']['commerce_product_entity_display']['route_parameters']['view_mode_name'] = $build['#view_mode'];
